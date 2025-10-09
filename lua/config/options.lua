@@ -2,6 +2,9 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
+-- Hide cmd
+vim.opt.cmdheight = 0
+
 -- Autocmds for relative number behavior
 vim.cmd [[
     autocmd InsertEnter * :set norelativenumber

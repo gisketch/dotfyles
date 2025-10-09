@@ -18,7 +18,7 @@ return {
                     left = "", -- Left border character
                     right = "", -- Right border character
                     diag = "●", -- Diagnostic indicator character
-                    arrow = "    ", -- Arrow pointing to diagnostic
+                    arrow = "", -- Arrow pointing to diagnostic
                     up_arrow = "    ", -- Upward arrow for multiline
                     vertical = " │", -- Vertical line for multiline
                     vertical_end = " └", -- End of vertical line for multiline
@@ -70,19 +70,38 @@ return {
         event = "LspAttach",
         opts = {
             backend = "vim",
-            picker = "telescope",
+            picker = {
+                "telescope",
+                opts = {
+                    layout_strategy = "vertical",
+                    layout_config = {
+                        vertical = {
+                            prompt_position = "top",
+                            width = { padding = 0 },
+                            height = { padding = 0 },
+                            preview_cutoff = 10,
+                            preview_height = 0.4,
+                        },
+                    },
+                    sorting_strategy = "ascending",
+                    borderchars = { " ", " ", " ", " ", " ", " ", " ", " " },
+                    prompt_prefix = "   ",
+                    selection_caret = "  ",
+                    entry_prefix = "  ",
+                }
+            },
             resolve_timeout = 100,
             signs = {
-                quickfix = { "", { link = "DiagnosticWarning" } },
-                others = { "", { link = "DiagnosticWarning" } },
-                refactor = { "", { link = "DiagnosticInfo" } },
-                ["refactor.move"] = { "󰪹", { link = "DiagnosticInfo" } },
-                ["refactor.extract"] = { "", { link = "DiagnosticError" } },
-                ["source.organizeImports"] = { "", { link = "DiagnosticWarning" } },
-                ["source.fixAll"] = { "󰃢", { link = "DiagnosticError" } },
-                ["source"] = { "", { link = "DiagnosticError" } },
-                ["rename"] = { "󰑕", { link = "DiagnosticWarning" } },
-                ["codeAction"] = { "", { link = "DiagnosticWarning" } },
+                quickfix = { "", { link = "TinyInlineDiagnosticVirtualTextWarning" } },
+                others = { "", { link = "TinyInlineDiagnosticVirtualTextWarning" } },
+                refactor = { "", { link = "TinyInlineDiagnosticVirtualTextInfo" } },
+                ["refactor.move"] = { "󰪹", { link = "TinyInlineDiagnosticVirtualTextInfo" } },
+                ["refactor.extract"] = { "", { link = "TinyInlineDiagnosticVirtualTextError" } },
+                ["source.organizeImports"] = { "", { link = "TinyInlineDiagnosticVirtualTextWarning" } },
+                ["source.fixAll"] = { "󰃢", { link = "TinyInlineDiagnosticVirtualTextError" } },
+                ["source"] = { "", { link = "TinyInlineDiagnosticVirtualTextError" } },
+                ["rename"] = { "󰑕", { link = "TinyInlineDiagnosticVirtualTextWarning" } },
+                ["codeAction"] = { "", { link = "TinyInlineDiagnosticVirtualTextWarning" } },
             },
         }
     },
@@ -146,7 +165,10 @@ return {
     -- Blink.cmp - Performant completion plugin
     {
         'saghen/blink.cmp',
-        dependencies = { 'rafamadriz/friendly-snippets' },
+        dependencies = { 
+            'rafamadriz/friendly-snippets',
+            'brenoprata10/nvim-highlight-colors' -- Add color highlighting dependency
+        },
         version = '1.*',
         ---@module 'blink.cmp'
         ---@type blink.cmp.Config
@@ -165,7 +187,38 @@ return {
             completion = {
                 documentation = { auto_show = false },
                 menu = {
-                    border = 'none'
+                    border = 'none',
+                    draw = {
+                        components = {
+                            -- Customize the drawing of kind icons for color highlighting
+                            kind_icon = {
+                                text = function(ctx)
+                                    -- Default kind icon
+                                    local icon = ctx.kind_icon
+                                    -- If LSP source, check for color derived from documentation
+                                    if ctx.item.source_name == "LSP" then
+                                        local color_item = require("nvim-highlight-colors").format(ctx.item.documentation, { kind = ctx.kind })
+                                        if color_item and color_item.abbr ~= "" then
+                                            icon = color_item.abbr
+                                        end
+                                    end
+                                    return icon .. ctx.icon_gap
+                                end,
+                                highlight = function(ctx)
+                                    -- Default highlight group
+                                    local highlight = "BlinkCmpKind" .. ctx.kind
+                                    -- If LSP source, check for color derived from documentation
+                                    if ctx.item.source_name == "LSP" then
+                                        local color_item = require("nvim-highlight-colors").format(ctx.item.documentation, { kind = ctx.kind })
+                                        if color_item and color_item.abbr_hl_group then
+                                            highlight = color_item.abbr_hl_group
+                                        end
+                                    end
+                                    return highlight
+                                end,
+                            },
+                        },
+                    },
                 }
             },
 
