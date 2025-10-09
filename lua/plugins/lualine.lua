@@ -5,7 +5,7 @@ return {
   config = function()
     require("lualine").setup({
       options = {
-        theme = "kanagawa-paper-ink",
+        theme = "auto", -- kanso will automatically provide theme colors
       },
     })
   end,

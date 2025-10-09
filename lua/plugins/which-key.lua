@@ -57,6 +57,8 @@ return {
       { "<leader>t", group = "Terminal/Toggle" },
       { "<leader>w", group = "Workspace" },
       { "<leader>r", group = "Rename" },
+      { "<leader>n", group = "Notifications" },
+      { "<leader>s", group = "Sessions" },
 
       -- Movement and navigation
       { "<leader>h", desc = "Go to line start" },
@@ -76,14 +78,18 @@ return {
       { "yss", desc = "Add surrounding to line", mode = "n" },
       { "S", desc = "Add surrounding", mode = "v" },
 
-      -- Git keymaps (vim-fugitive)
-      { "<leader>gs", desc = "Git status" },
+      -- Git keymaps (vim-fugitive only)
+      { "<leader>gs", desc = "Git status (fugitive)" },
       { "<leader>gd", desc = "Git diff split" },
       { "<leader>gc", desc = "Git commit" },
       { "<leader>gp", desc = "Git push" },
       { "<leader>gl", desc = "Git pull" },
       { "<leader>gb", desc = "Git blame" },
       { "<leader>gL", desc = "Git log" },
+
+      -- Session management
+      { "<leader>ss", desc = "Save Session" },
+      { "<leader>sd", desc = "Delete Session" },
 
       -- Clipboard operations
       { "<leader>p", desc = "Paste without overwriting register", mode = "x" },
@@ -98,60 +104,82 @@ return {
       { "<leader><leader>", desc = "Source current file" },
 
       -- Session management
-      { "<leader>S", desc = "Save session" },
+      { "<leader>vpp", desc = "Open packer config" },
 
       -- Code utilities
-      { "<leader>cb", desc = "Surround with code block", mode = "x" },
+      { "<leader>f", desc = "Format file" },
 
-      -- LSP keymaps (from lsp.lua)
-      { "<leader>D", desc = "Type Definition" },
-      { "<leader>d", desc = "Show Diagnostics Float" },
-      { "<leader>e", desc = "Show Diagnostics" },
-      { "<leader>q", desc = "Diagnostic Quickfix" },
-      { "<leader>th", desc = "Toggle Inlay Hints" },
-      { "<leader>wa", desc = "Add workspace folder" },
-      { "<leader>wr", desc = "Remove workspace folder" },
-      { "<leader>wl", desc = "List workspace folders" },
-      { "<leader>rn", desc = "Rename symbol" },
-      { "<leader>ca", desc = "Code action", mode = { "n", "v" } },
-      { "<leader>f", desc = "Format document" },
+      -- Floaterm - Beautiful floating terminal
+      { "<leader>t", "<cmd>FloatermToggle<cr>", desc = "Toggle Floating Terminal" },
+
+      -- LSP keymaps
+      { "gd", desc = "Go to definition" },
+      { "K", desc = "Hover documentation" },
+      { "<leader>vws", desc = "Workspace symbol search" },
+      { "<leader>vd", desc = "Open diagnostic float" },
+      { "[d", desc = "Previous diagnostic" },
+      { "]d", desc = "Next diagnostic" },
+      { "<leader>vca", desc = "Code action" },
+      { "<leader>vrr", desc = "References" },
+      { "<leader>vrn", desc = "Rename symbol" },
+    --   { "<C-h>", desc = "Signature help", mode = "i" },
 
       -- Go to mappings
-      { "g", group = "Go to" },
-      { "gd", desc = "Go to Definition" },
-      { "gD", desc = "Go to Declaration" },
-      { "gi", desc = "Go to Implementation" },
-      { "gr", desc = "Go to References" },
+      { "gD", desc = "Go to declaration" },
+      { "gi", desc = "Go to implementation" },
+      { "go", desc = "Go to type definition" },
+      { "gr", desc = "Go to references" },
+      { "gs", desc = "Signature help" },
 
       -- Diagnostic navigation
-      { "[d", desc = "Previous Diagnostic" },
-      { "]d", desc = "Next Diagnostic" },
+      { "<C-k>", desc = "Previous diagnostic" },
+      { "<C-j>", desc = "Next diagnostic" },
 
-      -- Visual mode movement
-      { "J", desc = "Move selection down", mode = "v" },
-      { "K", desc = "Move selection up", mode = "v" },
+      -- Visual mode
+      { "<leader>vca", desc = "Code action", mode = "v" },
 
       -- Split and tab management
-      { "<C-k>", desc = "Move to split above" },
-      { "<C-j>", desc = "Move to split below" },
-      { "<C-h>", desc = "Move to split left" },
-      { "<C-l>", desc = "Move to split right" },
+      { "<C-h>", desc = "Move to left split" },
+      { "<C-j>", desc = "Move to bottom split" },
+      { "<C-k>", desc = "Move to top split" },
+      { "<C-l>", desc = "Move to right split" },
 
       -- Terminal mode
       { "<Esc>", desc = "Exit terminal mode", mode = "t" },
 
-      -- Quickfix navigation
+      -- Quickfix
       { "<C-k>", desc = "Previous quickfix item" },
       { "<C-j>", desc = "Next quickfix item" },
 
-      -- Telescope keymaps
-      { "<leader>pf", desc = "Find files" },
-      { "<leader>lg", desc = "Live grep" },
-      { "<leader>pb", desc = "Find buffers" },
-      { "<leader>fh", desc = "Help tags" },
+      -- Telescope
+      { "<leader>pf", desc = "Find files in project" },
+      { "<C-p>", desc = "Find files in git" },
+      { "<leader>ps", desc = "Grep in project" },
+      { "<leader>vh", desc = "Help tags" },
 
-      -- Oil file explorer
+      -- Oil file manager
       { "<leader>pv", desc = "Open file explorer" },
+
+      -- Snacks dashboard and utilities
+      { "<leader>.", desc = "Dashboard" },
+      { "<leader>bd", desc = "Delete Buffer" },
+      { "<leader>cR", desc = "Rename File" },
+      { "<leader>gB", desc = "Git Blame Line" },
+      { "<leader>nd", desc = "Hide All Notifications" },
+      { "<leader>un", desc = "Show Notification History" },
+      { "]]", desc = "Next Reference" },
+      { "[[", desc = "Prev Reference" },
+
+      -- Toggle mappings (created by snacks)
+      { "<leader>us", desc = "Toggle spelling" },
+      { "<leader>uw", desc = "Toggle wrap" },
+      { "<leader>uL", desc = "Toggle relative number" },
+      { "<leader>ud", desc = "Toggle diagnostics" },
+      { "<leader>ul", desc = "Toggle line number" },
+      { "<leader>uc", desc = "Toggle conceal level" },
+      { "<leader>uT", desc = "Toggle treesitter" },
+      { "<leader>ub", desc = "Toggle dark background" },
+      { "<leader>uh", desc = "Toggle inlay hints" },
     })
   end,
 }
