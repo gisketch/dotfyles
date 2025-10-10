@@ -150,7 +150,7 @@ return {
                     pane = 2,
                     section = "terminal",
                     -- cmd = "pokemon-colorscripts --no-title --name mudkip",
-                    cmd = vim.fn.has("win32") == 1 or vim.fn.has("win64") == 1 and "pokemonshow" or "pokemon-colorscripts --no-title --name mudkip",
+                    cmd = "pokemonshow",
                     height = 10,
                     padding = 1,
                 },
