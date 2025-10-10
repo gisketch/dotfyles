@@ -165,7 +165,7 @@ return {
     -- Blink.cmp - Performant completion plugin
     {
         'saghen/blink.cmp',
-        dependencies = { 
+        dependencies = {
             'rafamadriz/friendly-snippets',
             'brenoprata10/nvim-highlight-colors' -- Add color highlighting dependency
         },
@@ -185,9 +185,15 @@ return {
 
             -- Only show documentation popup when manually triggered
             completion = {
-                documentation = { auto_show = false },
+                documentation = {
+                    auto_show = true,
+                    window = {
+                        border = 'single',
+                        zindex = 500
+                    }
+                },
                 menu = {
-                    border = 'none',
+                    border = 'single',
                     draw = {
                         components = {
                             -- Customize the drawing of kind icons for color highlighting
@@ -231,7 +237,7 @@ return {
             fuzzy = { implementation = "prefer_rust_with_warning" },
 
             -- Signature help configuration
-            signature = { enabled = true }
+            signature = { enabled = true, border = "single" }
         },
         opts_extend = { "sources.default" }
     },
@@ -267,8 +273,9 @@ return {
                         vim.tbl_extend("force", opts, { desc = "Go to declaration" }))
                     vim.keymap.set("n", "gd", vim.lsp.buf.definition,
                         vim.tbl_extend("force", opts, { desc = "Go to definition" }))
-                    vim.keymap.set("n", "K", vim.lsp.buf.hover,
-                        vim.tbl_extend("force", opts, { desc = "Hover documentation" }))
+                    vim.keymap.set("n", "K", function()
+                        vim.lsp.buf.hover({ border = "rounded" })
+                    end, vim.tbl_extend("force", opts, { desc = "Hover documentation" }))
                     vim.keymap.set("n", "gi", vim.lsp.buf.implementation,
                         vim.tbl_extend("force", opts, { desc = "Go to implementation" }))
                     vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help,

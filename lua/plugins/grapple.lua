@@ -5,7 +5,7 @@ return {
     { "nvim-tree/nvim-web-devicons", lazy = true }
   },
   opts = {
-    scope = "git", -- Use git repository as scope
+    scope = "cwd", -- Use current working directory as scope (better for sessions)
     icons = true,
     status = false,
   },
@@ -14,10 +14,10 @@ return {
   keys = {
     -- Add file to grapple (same as your <leader>a for harpoon)
     { "<leader>a", "<cmd>Grapple toggle<cr>", desc = "Add file to grapple" },
-    
+
     -- Toggle grapple menu (same as your <C-e> for harpoon)
     { "<C-e>", "<cmd>Grapple toggle_tags<cr>", desc = "Toggle grapple menu" },
-    
+
     -- Quick navigation to indexed files (1-9) - same as your harpoon setup
     { "<leader>1", "<cmd>Grapple select index=1<cr>", desc = "Grapple file 1" },
     { "<leader>2", "<cmd>Grapple select index=2<cr>", desc = "Grapple file 2" },
@@ -28,9 +28,45 @@ return {
     { "<leader>7", "<cmd>Grapple select index=7<cr>", desc = "Grapple file 7" },
     { "<leader>8", "<cmd>Grapple select index=8<cr>", desc = "Grapple file 8" },
     { "<leader>9", "<cmd>Grapple select index=9<cr>", desc = "Grapple file 9" },
-    
+
     -- Navigate to previous & next tagged files (same as your harpoon setup)
     { "<C-S-P>", "<cmd>Grapple cycle_tags prev<cr>", desc = "Previous grapple file" },
     { "<C-S-N>", "<cmd>Grapple cycle_tags next<cr>", desc = "Next grapple file" },
   },
+  config = function(_, opts)
+    require("grapple").setup(opts)
+
+    -- Trigger GrappleUpdate event when tags change
+    local grapple_group = vim.api.nvim_create_augroup("GrappleTabline", { clear = true })
+
+    -- Create autocmds to trigger updates when grapple state changes
+    vim.api.nvim_create_autocmd({ "BufEnter", "BufLeave", "BufDelete" }, {
+      group = grapple_group,
+      callback = function()
+        vim.schedule(function()
+          vim.api.nvim_exec_autocmds("User", { pattern = "GrappleUpdate" })
+        end)
+      end,
+    })
+    
+    -- Force refresh when directory changes (important for session switching)
+    vim.api.nvim_create_autocmd("DirChanged", {
+      group = grapple_group,
+      callback = function()
+        vim.schedule(function()
+          vim.api.nvim_exec_autocmds("User", { pattern = "GrappleUpdate" })
+        end)
+      end,
+    })
+    
+    -- Force refresh when sessions are loaded
+    vim.api.nvim_create_autocmd({ "SessionLoadPost", "VimEnter" }, {
+      group = grapple_group,
+      callback = function()
+        vim.defer_fn(function()
+          vim.api.nvim_exec_autocmds("User", { pattern = "GrappleUpdate" })
+        end, 100)
+      end,
+    })
+  end,
 }

@@ -26,27 +26,51 @@ return {
           local bg = colors.theme.ui.bg
           local bg_highlight = colors.theme.ui.bg_highlight or colors.theme.ui.bg_m1
           local fg = colors.theme.ui.fg
-          
+
           return {
+            -- Floating window colors (random bright color for testing)
+            --     -- Zen Bg Shades
+            -- zenBg0 = "#090E13",
+            -- zenBg1 = "#1C1E25",
+            -- zenBg2 = "#22262D",
+            -- zenBg3 = "#393B44",
+            --
+            -- -- Ink Bg Shades
+            -- inkBg0 = "#14171d",
+            -- inkBg1 = "#1f1f26",
+            -- inkBg2 = "#22262D",
+            -- inkBg3 = "#393B44",
+            -- inkBg4 = "#4b4e57",
+            --
+            NormalFloat = { bg = "#14171D" },
+            FloatBorder = { bg ="#14171D", fg = "#14171D" },
+            BlinkCmpMenu = { bg = "#14171D" },
+            BlinkCmpMenuBorder = { bg ="#14171D", fg = "#14171D" },
+            -- FloatTitle = { bg ="#1C1E25" , fg = "#ffffff", bold = true },  -- title styling
+
+            -- Grapple highlight groups
+            GrappleActive = { fg = "#7FB4CA", bold = true },  -- blue from your palette
+            GrappleMuted = { fg = "#658594" },                -- blue2 (muted) from your palette
+
             -- Tiny Inline Diagnostic highlight groups
             TinyInlineDiagnosticVirtualTextError = { fg = "#f7768e", bg = "#3d2a2e", italic = true },
             TinyInlineDiagnosticVirtualTextWarn = { fg = "#e0af68", bg = "#3d3424", italic = true },
             TinyInlineDiagnosticVirtualTextInfo = { fg = "#7aa2f7", bg = "#2a2d3a", italic = true },
             TinyInlineDiagnosticVirtualTextHint = { fg = "#9ece6a", bg = "#2a3426", italic = true },
             TinyInlineDiagnosticVirtualTextArrow = { fg = "#565f89", bg = "NONE" },
-            
+
             -- Inverted groups for left/right signs
             TinyInlineInvDiagnosticVirtualTextError = { fg = "#3d2a2e", bg = "#f7768e" },
             TinyInlineInvDiagnosticVirtualTextWarn = { fg = "#3d3424", bg = "#e0af68" },
             TinyInlineInvDiagnosticVirtualTextInfo = { fg = "#2a2d3a", bg = "#7aa2f7" },
             TinyInlineInvDiagnosticVirtualTextHint = { fg = "#2a3426", bg = "#9ece6a" },
-            
+
             -- Also ensure the base diagnostic groups have proper colors
             DiagnosticError = { fg = "#f7768e" },
             DiagnosticWarn = { fg = "#e0af68" },
             DiagnosticInfo = { fg = "#7aa2f7" },
             DiagnosticHint = { fg = "#9ece6a" },
-            
+
             -- Telescope borderless configuration
             TelescopeNormal = {
               bg = bg,
@@ -79,7 +103,7 @@ return {
               bg = bg,
             },
             TelescopePreviewNormal = {
-              bg = bg,
+              bg = "#14171d",
             },
             TelescopeResultsBorder = {
               bg = bg,
