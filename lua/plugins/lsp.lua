@@ -237,7 +237,7 @@ return {
             fuzzy = { implementation = "prefer_rust_with_warning" },
 
             -- Signature help configuration
-            signature = { enabled = true, border = "single" }
+            signature = { enabled = true }
         },
         opts_extend = { "sources.default" }
     },

@@ -43,7 +43,17 @@ vim.opt.wrap = false
 -- File handling
 vim.opt.swapfile = false
 vim.opt.backup = false
-vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
+-- Cross-platform undo directory
+local undodir
+if vim.fn.has('win32') == 1 or vim.fn.has('win64') == 1 then
+    -- Windows
+    undodir = vim.fn.expand('$LOCALAPPDATA/nvim-undo')
+else
+    -- macOS and Linux
+    undodir = vim.fn.expand('~/.vim/undodir')
+end
+vim.fn.mkdir(undodir, 'p')
+vim.opt.undodir = undodir
 vim.opt.undofile = true
 
 -- Search

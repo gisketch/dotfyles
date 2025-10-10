@@ -26,7 +26,7 @@ return {
         styles = {
             notification = {
                 border = "none", -- Remove borders completely
-                wo = { 
+                wo = {
                     wrap = true,
                     winblend = 0, -- Remove transparency
                 }
@@ -41,7 +41,7 @@ return {
                 title_pos = "center",
                 ft = "markdown",
                 bo = { filetype = "snacks_notif_history", modifiable = false },
-                wo = { 
+                wo = {
                     winhighlight = "Normal:SnacksNotifierHistory",
                     winblend = 0, -- Remove transparency
                 },
@@ -149,7 +149,8 @@ return {
                 {
                     pane = 2,
                     section = "terminal",
-                    cmd = "pokemon-colorscripts --no-title --name mudkip",
+                    -- cmd = "pokemon-colorscripts --no-title --name mudkip",
+                    cmd = vim.fn.has("win32") == 1 or vim.fn.has("win64") == 1 and "pokemonshow" or "pokemon-colorscripts --no-title --name mudkip",
                     height = 10,
                     padding = 1,
                 },
