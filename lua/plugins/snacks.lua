@@ -149,8 +149,8 @@ return {
                 {
                     pane = 2,
                     section = "terminal",
-                    -- cmd = "pokemon-colorscripts --no-title --name mudkip",
-                    cmd = "pokemonshow",
+                    cmd = "pokemon-colorscripts --no-title --name mudkip",
+                    -- cmd = "pokemonshow",
                     height = 10,
                     padding = 1,
                 },
