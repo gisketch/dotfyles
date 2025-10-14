@@ -74,20 +74,16 @@ return {
                 "telescope",
                 opts = {
                     layout_strategy = "vertical",
-                    layout_config = {
-                        vertical = {
-                            prompt_position = "top",
-                            width = { padding = 0 },
-                            height = { padding = 0 },
-                            preview_cutoff = 10,
-                            preview_height = 0.4,
-                        },
-                    },
+                    -- layout_config = {
+                    --     vertical = {
+                    --         prompt_position = "top",
+                    --         width = { padding = 0 },
+                    --         height = { padding = 0 },
+                    --         preview_cutoff = 10,
+                    --         preview_height = 0.4,
+                    --     },
+                    -- },
                     sorting_strategy = "ascending",
-                    borderchars = { " ", " ", " ", " ", " ", " ", " ", " " },
-                    prompt_prefix = "   ",
-                    selection_caret = "  ",
-                    entry_prefix = "  ",
                 }
             },
             resolve_timeout = 100,

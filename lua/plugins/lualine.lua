@@ -107,8 +107,8 @@ return {
                     },
                     'diagnostics'
                 },
-                lualine_c = { 'filename' },
-                lualine_x = { grapple_numbers },
+                lualine_c = { grapple_numbers },
+                lualine_x = { 'filename' },
                 lualine_y = { 'progress' },
                 lualine_z = { 'location' }
             },

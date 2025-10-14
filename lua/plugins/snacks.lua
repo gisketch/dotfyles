@@ -10,11 +10,16 @@ return {
         notifier = {
             enabled = true,
             timeout = 3000,
-            style = "compact", -- Use compact style for cleaner look
+            padding = true,
+
+            style = "fancy"
         },
         quickfile = { enabled = true },
         statuscolumn = { enabled = true },
         words = { enabled = true },
+        indent = {
+            char = "│",
+        },
         input = {
             icon = " ",
             icon_hl = "SnacksInputIcon",
@@ -23,14 +28,19 @@ return {
             win = { style = "input" },
             expand = true,
         },
+        -- STYLES
         styles = {
             notification = {
-                border = "none", -- Remove borders completely
+                border = 'none',
+                zindex = 100,
+                ft = "markdown",
                 wo = {
                     wrap = true,
                     winblend = 0, -- Remove transparency
-                }
+                },
+                bo = { filetype = "snacks_notif" },
             },
+
             notification_history = {
                 border = "none", -- Remove borders completely
                 zindex = 100,
@@ -55,10 +65,11 @@ return {
                 height = 1,
                 width = 60,
                 relative = "editor",
-                noautocmd = true,
+                noautocmd = false,
                 row = 2,
                 wo = {
-                    winhighlight = "NormalFloat:SnacksInputNormal,FloatBorder:SnacksInputBorder,FloatTitle:SnacksInputTitle",
+                    winhighlight =
+                    "NormalFloat:SnacksInputNormal,FloatBorder:SnacksInputBorder,FloatTitle:SnacksInputTitle",
                     cursorline = false,
                 },
                 bo = {
@@ -128,18 +139,23 @@ return {
 
                 -- Custom keymaps for the dashboard
                 keys = {
-                    { icon = " ", key = "f", desc = "Find File", action = ":lua Snacks.dashboard.pick('files')" },
-                    { icon = " ", key = "n", desc = "New File", action = ":ene | startinsert" },
-                    { icon = " ", key = "g", desc = "Find Text", action = ":lua Snacks.dashboard.pick('live_grep')" },
+                    { icon = " ", key = "f", desc = "Find File",    action = ":lua Snacks.dashboard.pick('files')" },
+                    { icon = " ", key = "n", desc = "New File",     action = ":ene | startinsert" },
+                    { icon = " ", key = "g", desc = "Find Text",    action = ":lua Snacks.dashboard.pick('live_grep')" },
                     { icon = " ", key = "r", desc = "Recent Files", action = ":lua Snacks.dashboard.pick('oldfiles')" },
-                    { icon = " ", key = "c", desc = "Config", action = ":lua Snacks.dashboard.pick('files', {cwd = vim.fn.stdpath('config')})" },
-                    { icon = " ", key = "e", desc = "Load Session", action = function()
-                        -- Use telescope sessions picker instead of custom implementation
-                        require('telescope').extensions.sessions_picker.sessions_picker()
-                    end },
+                    { icon = " ", key = "c", desc = "Config",       action = ":lua Snacks.dashboard.pick('files', {cwd = vim.fn.stdpath('config')})" },
+                    {
+                        icon = " ",
+                        key = "e",
+                        desc = "Load Session",
+                        action = function()
+                            -- Use telescope sessions picker instead of custom implementation
+                            require('telescope').extensions.sessions_picker.sessions_picker()
+                        end
+                    },
                     { icon = " ", key = "G", desc = "Git Status", action = ":Git" },
-                    { icon = " ", key = "L", desc = "Lazy", action = ":Lazy" },
-                    { icon = " ", key = "q", desc = "Quit", action = ":qa" },
+                    { icon = " ", key = "L", desc = "Lazy",       action = ":Lazy" },
+                    { icon = " ", key = "q", desc = "Quit",       action = ":qa" },
                 },
             },
 
@@ -149,12 +165,12 @@ return {
                 {
                     pane = 2,
                     section = "terminal",
-                    cmd = "pokemon-colorscripts --no-title --name mudkip",
-                    -- cmd = "pokemonshow",
+                    -- cmd = "pokemon-colorscripts --no-title --name mudkip",
+                    cmd = "pokemonshow",
                     height = 10,
                     padding = 1,
                 },
-                { section = "keys", gap = 1, padding = 1 },
+                { section = "keys",  gap = 1, padding = 1 },
                 {
                     pane = 2,
                     icon = " ",
@@ -255,12 +271,13 @@ return {
                 Snacks.toggle.option("relativenumber", { name = "relative number" }):map("<leader>uL")
                 Snacks.toggle.diagnostics():map("<leader>ud")
                 Snacks.toggle.line_number():map("<leader>ul")
-                Snacks.toggle.option("conceallevel", { off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2 }):map("<leader>uc")
+                Snacks.toggle.option("conceallevel", { off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2 })
+                    :map("<leader>uc")
                 Snacks.toggle.treesitter():map("<leader>uT")
-                Snacks.toggle.option("background", { off = "light", on = "dark", name = "dark background" }):map("<leader>ub")
+                Snacks.toggle.option("background", { off = "light", on = "dark", name = "dark background" }):map(
+                    "<leader>ub")
                 Snacks.toggle.inlay_hints():map("<leader>uh")
             end,
         })
     end,
 }
-

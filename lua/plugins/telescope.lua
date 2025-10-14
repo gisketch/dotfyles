@@ -56,9 +56,9 @@ return {
                     "--hidden",
                     "--glob=!.git/",
                 },
-                prompt_prefix = "   ",
-                selection_caret = "  ",
-                entry_prefix = "  ",
+                prompt_prefix = "   ",
+                selection_caret = " ",
+                entry_prefix = " ",
                 initial_mode = "insert",
                 selection_strategy = "reset",
                 sorting_strategy = "ascending",
@@ -66,8 +66,8 @@ return {
                 layout_config = {
                     horizontal = {
                         prompt_position = "top",
-                        width = { padding = 0 },
-                        height = { padding = 0 },
+                        width = { padding = 10 },
+                        height = { padding = 5 },
                         preview_width = 0.5,
                     },
                 },
