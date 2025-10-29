@@ -77,10 +77,10 @@ return {
 
                     -- indent
                     SnacksIndent = {
-                        fg = grey
+                        fg = black3
                     },
                     SnacksIndentScope = {
-                        fg = grey2
+                        fg = grey
                     },
 
 
@@ -106,6 +106,24 @@ return {
             }
         })
         vim.cmd('colorscheme github_dark_dimmed')
+        -- Enable transparent background so the terminal's transparency shows through
+        -- Override any theme backgrounds that set a solid color
+        vim.cmd('highlight Normal guibg=NONE ctermbg=NONE')
+        vim.cmd('highlight NormalNC guibg=NONE ctermbg=NONE')
+        vim.cmd('highlight NormalFloat guibg=NONE ctermbg=NONE')
+        vim.cmd('highlight SignColumn guibg=NONE ctermbg=NONE')
+        vim.cmd('highlight EndOfBuffer guibg=NONE ctermbg=NONE')
+        vim.cmd('highlight FloatBorder guibg=NONE ctermbg=NONE')
+        -- Make Telescope and common floats transparent too
+        -- vim.cmd('highlight TelescopeNormal guibg=NONE ctermbg=NONE')
+        -- vim.cmd('highlight TelescopeBorder guibg=NONE ctermbg=NONE')
+        -- vim.cmd('highlight TelescopePromptNormal guibg=NONE ctermbg=NONE')
+        -- vim.cmd('highlight TelescopePromptBorder guibg=NONE ctermbg=NONE')
+        -- vim.cmd('highlight TelescopeResultsNormal guibg=NONE ctermbg=NONE')
+        -- vim.cmd('highlight TelescopePreviewNormal guibg=NONE ctermbg=NONE')
+        -- vim.cmd('highlight TelescopePromptTitle guibg=NONE ctermbg=NONE')
+        -- vim.cmd('highlight TelescopePreviewTitle guibg=NONE ctermbg=NONE')
+        -- vim.cmd('highlight TelescopeSelection guibg=NONE ctermbg=NONE')
     end,
 
 }

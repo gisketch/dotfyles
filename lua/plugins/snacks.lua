@@ -1,4 +1,5 @@
 -- Snacks.nvim with dashboard and utilities
+
 return {
     "folke/snacks.nvim",
     priority = 1000,

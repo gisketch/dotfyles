@@ -4,6 +4,9 @@ vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
 vim.keymap.set({ "n", "v" }, "<leader>h", "^")
 vim.keymap.set({ "n", "v" }, "<leader>l", "$")
+-- use left arrow and right arrow keys instead of h and l
+vim.keymap.set({ "n", "v" }, "<leader><Left>", "^")
+vim.keymap.set({ "n", "v" }, "<leader><Right>", "$")
 
 vim.keymap.set("n", "J", "mzJ`z")
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
@@ -68,6 +71,16 @@ vim.api.nvim_set_keymap("t", "<D-v>", '<C-\\><C-o>"+p', { noremap = true, silent
 
 -- Window navigation
 vim.api.nvim_set_keymap("n", "<C-f>", "<C-w>w", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<C-h>", "<C-w>h", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<C-j>", "<C-w>j", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<C-k>", "<C-w>k", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<C-l>", "<C-w>l", { noremap = true, silent = true })
+
+-- Window resizing
+vim.api.nvim_set_keymap("n", "<C-S-h>", ":vertical resize -2<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<C-S-j>", ":resize +2<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<C-S-k>", ":resize -2<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<C-S-l>", ":vertical resize +2<CR>", { noremap = true, silent = true })
 
 -- Buffer management
 vim.api.nvim_set_keymap("n", "<M-x>", "ZZ", { noremap = true, silent = true })

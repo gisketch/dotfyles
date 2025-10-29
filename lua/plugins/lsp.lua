@@ -13,16 +13,16 @@ return {
         priority = 1000,
         config = function()
             require('tiny-inline-diagnostic').setup({
-                preset = "classic",
-                signs = {
-                    left = "", -- Left border character
-                    right = "", -- Right border character
-                    diag = "●", -- Diagnostic indicator character
-                    arrow = "", -- Arrow pointing to diagnostic
-                    up_arrow = "    ", -- Upward arrow for multiline
-                    vertical = " │", -- Vertical line for multiline
-                    vertical_end = " └", -- End of vertical line for multiline
-                },
+                preset = "modern",
+                -- signs = {
+                --     -- left = "", -- Left border character
+                --     -- right = "", -- Right border character
+                --     -- diag = "●", -- Diagnostic indicator character
+                --     -- arrow = "", -- Arrow pointing to diagnostic
+                --     -- up_arrow = "    ", -- Upward arrow for multiline
+                --     -- vertical = " │", -- Vertical line for multiline
+                --     -- vertical_end = " └", -- End of vertical line for multiline
+                -- },
                 hi = {
                     error = "TinyInlineDiagnosticVirtualTextError",
                     warn = "TinyInlineDiagnosticVirtualTextWarn",
@@ -49,7 +49,7 @@ return {
                     end,
                     break_line = {
                         enabled = false,
-                        after = 30,
+                        after = 40,
                     },
                     virt_texts = {
                         priority = 2048,
@@ -107,6 +107,10 @@ return {
         "williamboman/mason.nvim",
         config = function()
             require("mason").setup({
+                registries = {
+                    "github:mason-org/mason-registry",
+                    "github:Crashdummyy/mason-registry",
+                },
                 ui = {
                     icons = {
                         package_installed = "✓",
@@ -158,6 +162,17 @@ return {
         end,
     },
 
+    {
+        "seblyng/roslyn.nvim",
+        ft = "cs",
+        opts = {
+            filewatching = "auto",
+            broad_search = false,
+            lock_target = false,
+            silent = false,
+        },
+    },
+
     -- Blink.cmp - Performant completion plugin
     {
         'saghen/blink.cmp',
@@ -185,7 +200,6 @@ return {
                     auto_show = true,
                     window = {
                         border = 'single',
-                        zindex = 500
                     }
                 },
                 menu = {
@@ -199,7 +213,8 @@ return {
                                     local icon = ctx.kind_icon
                                     -- If LSP source, check for color derived from documentation
                                     if ctx.item.source_name == "LSP" then
-                                        local color_item = require("nvim-highlight-colors").format(ctx.item.documentation, { kind = ctx.kind })
+                                        local color_item = require("nvim-highlight-colors").format(
+                                            ctx.item.documentation, { kind = ctx.kind })
                                         if color_item and color_item.abbr ~= "" then
                                             icon = color_item.abbr
                                         end
@@ -211,7 +226,8 @@ return {
                                     local highlight = "BlinkCmpKind" .. ctx.kind
                                     -- If LSP source, check for color derived from documentation
                                     if ctx.item.source_name == "LSP" then
-                                        local color_item = require("nvim-highlight-colors").format(ctx.item.documentation, { kind = ctx.kind })
+                                        local color_item = require("nvim-highlight-colors").format(
+                                            ctx.item.documentation, { kind = ctx.kind })
                                         if color_item and color_item.abbr_hl_group then
                                             highlight = color_item.abbr_hl_group
                                         end
@@ -239,6 +255,7 @@ return {
     },
 
     -- LSP Configuration and Keymaps
+
     {
         "neovim/nvim-lspconfig",
         dependencies = { "saghen/blink.cmp", "rachartier/tiny-inline-diagnostic.nvim", "rachartier/tiny-code-action.nvim" },
@@ -246,7 +263,14 @@ return {
             -- Configure diagnostics (virtual_text disabled since we use tiny-inline-diagnostic)
             vim.diagnostic.config({
                 virtual_text = false, -- Disabled in favor of tiny-inline-diagnostic
-                signs = true,
+                signs = {
+                    text = {
+                        [vim.diagnostic.severity.ERROR] = "",
+                        [vim.diagnostic.severity.WARN] = "",
+                        [vim.diagnostic.severity.HINT] = "󰌵",
+                        [vim.diagnostic.severity.INFO] = ""
+                    }
+                },
                 underline = true,
                 update_in_insert = false,
                 severity_sort = true,
