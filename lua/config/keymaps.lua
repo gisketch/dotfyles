@@ -43,6 +43,11 @@ vim.keymap.set("n", "<leader><leader>", function()
 	vim.cmd("so")
 end)
 
+-- Theme picker
+vim.keymap.set("n", "<leader>ct", function()
+	_G.ThemeManager.theme_picker()
+end, { desc = "Change theme" })
+
 -- macOS clipboard integration
 -- change to ctrl shift v instead of D v
 vim.api.nvim_set_keymap("", "<C-S-v>", '"+p', { noremap = true, silent = true })

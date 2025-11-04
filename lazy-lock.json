@@ -1,5 +1,6 @@
 {
   "blink.cmp": { "branch": "main", "commit": "327fff91fe6af358e990be7be1ec8b78037d2138" },
+  "everforest": { "branch": "main", "commit": "557bce922401e247a596583679bc181d4d688554" },
   "floaterm": { "branch": "main", "commit": "34e14f0b5e2687fd31a93fe75982ec84e5145856" },
   "friendly-snippets": { "branch": "main", "commit": "572f5660cf05f8cd8834e096d7b4c921ba18e175" },
   "github-theme": { "branch": "main", "commit": "c106c9472154d6b2c74b74565616b877ae8ed31d" },

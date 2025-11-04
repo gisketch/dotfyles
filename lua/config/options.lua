@@ -80,8 +80,8 @@ if vim.g.neovide then
     -- vim.g.neovide_scale_factor = 1.4
     vim.opt.linespace = 3
 
-    vim.g.neovide_title_background_color = "#22272e"
-    vim.g.neovide_title_text_color = "#22272e"
+    -- Neovide title colors are now managed by the theme system
+    -- See lua/plugins/colorscheme.lua for theme-specific color configurations
 
     vim.g.neovide_padding_top = 2
     vim.g.neovide_padding_bottom = 2
