@@ -140,9 +140,6 @@ return {
                     "lua_ls",      -- Lua
                     "pyright",     -- Python
                     "tailwindcss", -- Tailwind CSS (useful for React)
-                    "roslyn",
-                    "rzls"
-
                 },
                 automatic_installation = true,
             })

@@ -90,16 +90,80 @@ M.themes = {
         },
         colorscheme_name = 'everforest',
         neovide_colors = {
-            title_background = "#2d353b",
-            title_text = "#2d353b",
+            title_background = "#272e33",
+            title_text = "#272e33",
         },
         setup_highlights = function()
             -- Everforest configuration
             require('everforest').setup({
-                background = "hard",  -- Options: 'hard', 'medium', 'soft'
+                background = "hard", -- Options: 'hard', 'medium', 'soft'
                 transparent_background_level = 0,
-                italics = false,
+                italics = true,
                 disable_italic_comments = false,
+
+                on_highlights = function(hl, palette)
+                    -- Colors
+                    local darker_black = "#1e2326"
+                    local black = "#272e33"
+                    local black2 = "#2e383c"
+                    local black3 = "#374145"
+                    local grey = "#414b50"
+
+
+                    hl.DiagnosticError = { fg = palette.none, bg = palette.none, sp = palette.red }
+                    hl.DiagnosticWarn = { fg = palette.none, bg = palette.none, sp = palette.yellow }
+                    hl.DiagnosticInfo = { fg = palette.none, bg = palette.none, sp = palette.blue }
+                    hl.DiagnosticHint = { fg = palette.none, bg = palette.none, sp = palette.green }
+                    hl.NormalFloat = { bg = darker_black }
+                    hl.FloatTitle = { bg = palette.green, fg = black, bold = true }
+                    hl.FloatBorder = { bg = darker_black, fg = darker_black }
+                    hl.BlinkCmpMenuBorder = { bg = darker_black, fg = darker_black }
+                    hl.BlinkCmpMenu = { bg = darker_black }
+                    hl.BlinkCmpDoc = { bg = darker_black }
+                    hl.BlinkCmpScrollBarThumb = { bg = darker_black, fg = darker_black }
+                    hl.BlinkCmpDocBorder = { bg = darker_black, fg = darker_black }
+
+
+                    -- LineNumber
+                    hl.CursorLineNr = { fg = palette.green, bold = true }
+
+
+                    -- Telescope borderless configuration
+                    hl.TelescopeNormal = { bg = black }
+                    hl.TelescopeSelection = { bg = black2 }
+                    hl.TelescopePromptNormal = { bg = black3 }
+                    hl.TelescopePromptBorder = { bg = black3 }
+                    hl.TelescopePromptTitle = { bg = palette.blue, fg = black }
+                    hl.TelescopePreviewTitle = { bg = palette.green, fg = black }
+                    hl.TelescopePreviewNormal = { bg = darker_black }
+                    hl.TelescopePreviewBorder = { bg = darker_black, fg = darker_black }
+
+
+                    -- Indent guides
+                    hl.SnacksIndent = { fg = black3 }
+                    hl.SnacksIndentScope = { fg = grey }
+
+                    -- Notification
+                    hl.SnacksNotifierTitleWarn = { fg = palette.yellow, bg = black3 }
+                    hl.SnacksNotifierBorderWarn = { bg = black3, fg = black3 }
+                    hl.SnacksNotifierWarn = { bg = black3 }
+
+                    -- Grapple highlight groups
+                    hl.GrappleActive = { fg = palette.green, bold = true }
+
+                    -- Tiny Inline Diagnostic highlight groups
+                    hl.TinyInlineDiagnosticVirtualTextError = { fg = palette.red, bg = palette.red, italic = true }
+                    hl.TinyInlineDiagnosticVirtualTextWarn = { fg = palette.yellow, bg = palette.yellow, italic = true }
+                    hl.TinyInlineDiagnosticVirtualTextInfo = { fg = palette.blue, bg = palette.blue, italic = true }
+                    hl.TinyInlineDiagnosticVirtualTextHint = { fg = palette.green, bg = palette.green, italic = true }
+                    hl.TinyInlineDiagnosticVirtualTextArrow = { fg = palette.purple, bg = "NONE" }
+
+                    hl.TinyInlineInvDiagnosticVirtualTextError = { fg = palette.red, bg = palette.red, italic = true }
+                    hl.TinyInlineInvDiagnosticVirtualTextWarn = { fg = palette.yellow, bg = palette.yellow, italic = true }
+                    hl.TinyInlineInvDiagnosticVirtualTextInfo = { fg = palette.blue, bg = palette.blue, italic = true }
+                    hl.TinyInlineInvDiagnosticVirtualTextHint = { fg = palette.green, bg = palette.green, italic = true }
+                    hl.TinyInlineInvDiagnosticVirtualTextArrow = { fg = palette.purple, bg = "NONE" }
+                end,
             })
 
             -- Custom highlight overrides for everforest (empty for now)
@@ -110,7 +174,7 @@ M.themes = {
 
 -- Get the current theme from global variable or default to github_dark
 M.get_current_theme = function()
-    return vim.g.current_colorscheme or "github_dark"
+    return vim.g.current_colorscheme or "everforest"
 end
 
 -- Apply a theme by name
