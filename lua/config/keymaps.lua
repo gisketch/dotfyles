@@ -27,7 +27,9 @@ vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
 vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
 
 -- Command mode paste
-vim.keymap.set("c", "<C-v>", '<C-r>"')
+-- vim.keymap.set("c", "<C-v>", '<C-r>"')
+-- add key paste from system clipboard
+vim.keymap.set("n", "<leader>pp", '<C-r>+')
 
 -- Search and replace
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>//gI<Left><Left><Left>]])

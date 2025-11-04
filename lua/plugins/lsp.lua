@@ -111,6 +111,10 @@ return {
                     "github:mason-org/mason-registry",
                     "github:Crashdummyy/mason-registry",
                 },
+                ensure_installed = {
+                    "roslyn",
+                    "rzls"
+                },
                 ui = {
                     icons = {
                         package_installed = "✓",
@@ -136,6 +140,9 @@ return {
                     "lua_ls",      -- Lua
                     "pyright",     -- Python
                     "tailwindcss", -- Tailwind CSS (useful for React)
+                    "roslyn",
+                    "rzls"
+
                 },
                 automatic_installation = true,
             })
@@ -164,7 +171,7 @@ return {
 
     {
         "seblyng/roslyn.nvim",
-        ft = "cs",
+        ft = { "cs", "razor" },
         opts = {
             filewatching = "auto",
             broad_search = false,
@@ -340,11 +347,11 @@ return {
                         vim.lsp.inlay_hint.enable(false, { bufnr = ev.buf })
 
                         -- Add toggle keymap
-                        vim.keymap.set("n", "<leader>th", function()
-                            local current_setting = vim.lsp.inlay_hint.is_enabled({ bufnr = ev.buf })
-                            vim.lsp.inlay_hint.enable(not current_setting, { bufnr = ev.buf })
-                            print("Inlay hints " .. (not current_setting and "enabled" or "disabled"))
-                        end, vim.tbl_extend("force", opts, { desc = "Toggle inlay hints" }))
+                        -- vim.keymap.set("n", "<leader>th", function()
+                        --     local current_setting = vim.lsp.inlay_hint.is_enabled({ bufnr = ev.buf })
+                        --     vim.lsp.inlay_hint.enable(not current_setting, { bufnr = ev.buf })
+                        --     print("Inlay hints " .. (not current_setting and "enabled" or "disabled"))
+                        -- end, vim.tbl_extend("force", opts, { desc = "Toggle inlay hints" }))
                     end
                 end,
             })

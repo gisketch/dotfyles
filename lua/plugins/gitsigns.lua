@@ -66,10 +66,10 @@ return {
     { "<leader>hR", "<cmd>Gitsigns reset_buffer<cr>", desc = "Reset buffer" },
     { "<leader>hp", "<cmd>Gitsigns preview_hunk<cr>", desc = "Preview hunk" },
     { "<leader>hb", function() require('gitsigns').blame_line{full=true} end, desc = "Blame line" },
-    { "<leader>tb", "<cmd>Gitsigns toggle_current_line_blame<cr>", desc = "Toggle line blame" },
+    -- { "<leader>tb", "<cmd>Gitsigns toggle_current_line_blame<cr>", desc = "Toggle line blame" },
     { "<leader>hd", "<cmd>Gitsigns diffthis<cr>", desc = "Diff this" },
     { "<leader>hD", function() require('gitsigns').diffthis('~') end, desc = "Diff this ~" },
-    { "<leader>td", "<cmd>Gitsigns toggle_deleted<cr>", desc = "Toggle deleted" },
+    -- { "<leader>td", "<cmd>Gitsigns toggle_deleted<cr>", desc = "Toggle deleted" },
 
     -- Text object
     { "ih", ":<C-U>Gitsigns select_hunk<CR>", mode = {"o", "x"}, desc = "Select hunk" },

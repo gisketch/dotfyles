@@ -21,7 +21,7 @@ return {
                     NormalFloat = { bg = darker_black },
                     FloatTitle = { bg = palette.success.fg, fg = black, bold = true }, -- title styling
                     FloatBorder = { bg = darker_black, fg = darker_black },
-                    BlinkCmpMenuBorder = { bg = palette.black.base, fg = palette.black.base },
+                    BlinkCmpMenuBorder = { bg = black, fg = black },
                     BlinkCmpDoc = { bg = black },
                     BlinkCmpScrollBarThumb = { bg = palette.black.base, fg = palette.black.base },
                     BlinkCmpDocBorder = { bg = black, fg = black },
@@ -108,22 +108,12 @@ return {
         vim.cmd('colorscheme github_dark_dimmed')
         -- Enable transparent background so the terminal's transparency shows through
         -- Override any theme backgrounds that set a solid color
-        vim.cmd('highlight Normal guibg=NONE ctermbg=NONE')
-        vim.cmd('highlight NormalNC guibg=NONE ctermbg=NONE')
-        vim.cmd('highlight NormalFloat guibg=NONE ctermbg=NONE')
-        vim.cmd('highlight SignColumn guibg=NONE ctermbg=NONE')
-        vim.cmd('highlight EndOfBuffer guibg=NONE ctermbg=NONE')
-        vim.cmd('highlight FloatBorder guibg=NONE ctermbg=NONE')
-        -- Make Telescope and common floats transparent too
-        -- vim.cmd('highlight TelescopeNormal guibg=NONE ctermbg=NONE')
-        -- vim.cmd('highlight TelescopeBorder guibg=NONE ctermbg=NONE')
-        -- vim.cmd('highlight TelescopePromptNormal guibg=NONE ctermbg=NONE')
-        -- vim.cmd('highlight TelescopePromptBorder guibg=NONE ctermbg=NONE')
-        -- vim.cmd('highlight TelescopeResultsNormal guibg=NONE ctermbg=NONE')
-        -- vim.cmd('highlight TelescopePreviewNormal guibg=NONE ctermbg=NONE')
-        -- vim.cmd('highlight TelescopePromptTitle guibg=NONE ctermbg=NONE')
-        -- vim.cmd('highlight TelescopePreviewTitle guibg=NONE ctermbg=NONE')
-        -- vim.cmd('highlight TelescopeSelection guibg=NONE ctermbg=NONE')
+        -- vim.cmd('highlight Normal guibg=NONE ctermbg=NONE')
+        -- vim.cmd('highlight NormalNC guibg=NONE ctermbg=NONE')
+        -- vim.cmd('highlight NormalFloat guibg=NONE ctermbg=NONE')
+        -- vim.cmd('highlight SignColumn guibg=NONE ctermbg=NONE')
+        -- vim.cmd('highlight EndOfBuffer guibg=NONE ctermbg=NONE')
+        -- vim.cmd('highlight FloatBorder guibg=NONE ctermbg=NONE')
     end,
 
 }

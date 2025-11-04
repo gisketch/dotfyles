@@ -74,3 +74,31 @@ vim.opt.updatetime = 50
 
 -- Custom commands
 vim.cmd([[command! -nargs=0 Stringify :%s/"/\\"/g | %s/\n//g]])
+
+if vim.g.neovide then
+    vim.o.guifont = "JetBrainsMonoNL Nerd Font Propo:h12"
+    -- vim.g.neovide_scale_factor = 1.4
+    vim.opt.linespace = 3
+
+    vim.g.neovide_title_background_color = "#22272e"
+    vim.g.neovide_title_text_color = "#22272e"
+
+    vim.g.neovide_padding_top = 2
+    vim.g.neovide_padding_bottom = 2
+    vim.g.neovide_padding_right = 2
+    vim.g.neovide_padding_left = 2
+
+    -- vim.g.neovide_floating_corner_radius = 0.5
+
+    vim.g.neovide_floating_shadow = true
+    vim.g.neovide_floating_z_height = 3
+    vim.g.neovide_light_angle_degrees = 45
+    vim.g.neovide_light_radius = 0
+
+    vim.g.neovide_hide_mouse_when_typing = true
+    vim.g.neovide_remember_window_size = true
+
+    vim.g.neovide_cursor_animation_length = 0
+
+    vim.g.neovide_scroll_animation_length = 0.05
+end
