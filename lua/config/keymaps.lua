@@ -29,7 +29,8 @@ vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
 -- Command mode paste
 -- vim.keymap.set("c", "<C-v>", '<C-r>"')
 -- add key paste from system clipboard
-vim.keymap.set("n", "<leader>pp", '<C-r>+')
+-- vim.keymap.set("n", "<leader>pp", 'a<C-r>+<Esc>')
+
 
 -- Search and replace
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>//gI<Left><Left><Left>]])
@@ -43,9 +44,10 @@ vim.keymap.set("n", "<leader><leader>", function()
 end)
 
 -- macOS clipboard integration
-vim.api.nvim_set_keymap("", "<D-v>", '"+p', { noremap = true, silent = true })
-vim.api.nvim_set_keymap("i", "<D-v>", "<C-R>+", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("v", "<D-v>", '"+p', { noremap = true, silent = true })
+-- change to ctrl shift v instead of D v
+vim.api.nvim_set_keymap("", "<C-S-v>", '"+p', { noremap = true, silent = true })
+vim.api.nvim_set_keymap("i", "<C-S-v>", "<C-R>+", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("v", "<C-S-v>", '"+p', { noremap = true, silent = true })
 
 -- Session management
 local function save_session()
