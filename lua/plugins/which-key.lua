@@ -4,7 +4,7 @@ return {
   event = "VeryLazy",
   config = function()
     require("which-key").setup({
-      preset = "classic",
+      preset = "helix",
       delay = function(ctx)
         return ctx.plugin and 0 or 200
       end,
@@ -25,8 +25,8 @@ return {
         },
         presets = {
           operators = true,
-          motions = true,
-          text_objects = true,
+          motions = false,
+          text_objects = false,
           windows = true,
           nav = true,
           z = true,
