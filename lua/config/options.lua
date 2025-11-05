@@ -31,6 +31,14 @@ vim.opt.nu = true
 vim.opt.relativenumber = true
 vim.opt.cursorline = true
 
+-- Terminal shell configuration (Windows only)
+if vim.fn.has('win32') == 1 or vim.fn.has('win64') == 1 then
+    vim.opt.shell = 'powershell.exe'
+    vim.opt.shellcmdflag = '-Command'
+    vim.opt.shellquote = ''
+    vim.opt.shellxquote = ''
+end
+
 -- Indentation
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4

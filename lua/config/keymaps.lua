@@ -80,16 +80,21 @@ vim.api.nvim_set_keymap("t", "<D-v>", '<C-\\><C-o>"+p', { noremap = true, silent
 
 -- Window navigation
 vim.api.nvim_set_keymap("n", "<C-f>", "<C-w>w", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<C-h>", "<C-w>h", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<C-j>", "<C-w>j", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<C-k>", "<C-w>k", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<C-l>", "<C-w>l", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<C-Left>", "<C-w>h", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<C-Down>", "<C-w>j", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<C-Up>", "<C-w>k", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<C-Right>", "<C-w>l", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("t", "<C-f>", [[<C-\><C-n><C-w>w]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap("t", "<C-Left>", [[<C-\><C-n><C-w>h]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap("t", "<C-Down>", [[<C-\><C-n><C-w>j]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap("t", "<C-Up>", [[<C-\><C-n><C-w>k]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap("t", "<C-Right>", [[<C-\><C-n><C-w>l]], { noremap = true, silent = true })
 
 -- Window resizing
-vim.api.nvim_set_keymap("n", "<C-S-h>", ":vertical resize -2<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<C-S-j>", ":resize +2<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<C-S-k>", ":resize -2<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<C-S-l>", ":vertical resize +2<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<C-S-Left>", ":vertical resize -2<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<C-S-Down>", ":resize +2<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<C-S-Up>", ":resize -2<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<C-S-Right>", ":vertical resize +2<CR>", { noremap = true, silent = true })
 
 -- Buffer management
 vim.api.nvim_set_keymap("n", "<M-x>", "ZZ", { noremap = true, silent = true })

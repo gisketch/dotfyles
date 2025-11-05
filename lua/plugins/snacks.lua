@@ -29,6 +29,11 @@ return {
             win = { style = "input" },
             expand = true,
         },
+        terminal = {
+            win = {
+                style = "terminal",
+            },
+        },
         -- STYLES
         styles = {
             notification = {
@@ -194,6 +199,15 @@ return {
         },
     },
     keys = {
+        -- add terminal c-t
+        {
+            "<c-t>",
+            function()
+                Snacks.terminal.toggle()
+            end,
+            desc = "Terminal",
+            mode = { "n", "t" },
+        },
         {
             "<leader>.",
             function()

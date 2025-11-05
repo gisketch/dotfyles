@@ -4,7 +4,7 @@ return {
         -- add any options here
         cli = {
             win = {
-                layout = "float",
+                -- layout = "float",
             },
             mux = {
                 enabled = false,
