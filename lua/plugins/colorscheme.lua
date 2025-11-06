@@ -200,7 +200,7 @@ M.apply_theme = function(theme_key)
     -- Save the current theme
     vim.g.current_colorscheme = theme_key
 
-    vim.notify("Applied theme: " .. theme.name, vim.log.levels.INFO)
+    -- vim.notify("Applied theme: " .. theme.name, vim.log.levels.INFO)
 end
 
 -- Theme picker using telescope
