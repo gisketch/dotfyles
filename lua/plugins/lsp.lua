@@ -321,8 +321,12 @@ return {
                         require("tiny-code-action").code_action()
                     end, vim.tbl_extend("force", opts, { desc = "Code action" }))
 
-                    vim.keymap.set("n", "gr", vim.lsp.buf.references,
-                        vim.tbl_extend("force", opts, { desc = "Go to references" }))
+                    vim.keymap.set("n", "gr", function()
+                        require("telescope.builtin").lsp_references({
+                            layout_strategy = "vertical",
+                            sorting_strategy = "ascending",
+                        })
+                    end, vim.tbl_extend("force", opts, { desc = "Go to references" }))
                     vim.keymap.set("n", "<leader>f", function()
                         vim.lsp.buf.format({ async = true })
                     end, vim.tbl_extend("force", opts, { desc = "Format document" }))
