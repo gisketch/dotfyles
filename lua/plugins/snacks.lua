@@ -21,7 +21,66 @@ return {
         indent = {
             char = "│",
         },
+        picker = {
+            enabled = true,
+            ui_select = true,
+            live = true,
+            layouts = {
+                select = {
+                    layout = {
+                        box = "horizontal",
+                        backdrop = false,
+                        width = 0.8,
+                        height = 0.4,
+                        border = "none",
+                        {
+                            box = "vertical",
+                            { win = "input", height = 1,          border = true,        title = "{title} {live} {flags}", title_pos = "center" },
+                            { win = "list",  title = " Results ", title_pos = "center", border = true },
+                        },
+                        {
+                            win = "preview",
+                            title = "{preview:Preview}",
+                            width = 0.5,
+                            border = true,
+                            title_pos = "center",
+                        },
+                    },
+                },
+                default = {
+                    layout = {
+                        box = "horizontal",
+                        backdrop = false,
+                        width = 0.8,
+                        height = 0.9,
+                        border = "none",
+                        {
+                            box = "vertical",
+                            { win = "input", height = 1,          border = true,        title = "{title} {live} {flags}", title_pos = "center" },
+                            { win = "list",  title = " Results ", title_pos = "center", border = true },
+                        },
+                        {
+                            win = "preview",
+                            title = "{preview:Preview}",
+                            width = 0.5,
+                            border = true,
+                            title_pos = "center",
+                        },
+                    },
+                }
+            },
+            layout = {
+                preset = "default",
+            },
+            -- Fuzzy matching settings
+            matcher = {
+                fuzzy = true,
+                smartcase = true,
+                filename_bonus = true,
+            },
+        },
         input = {
+            enabled = true,
             icon = " ",
             icon_hl = "SnacksInputIcon",
             icon_pos = "left",
@@ -29,6 +88,9 @@ return {
             win = { style = "input" },
             expand = true,
         },
+        -- select = {
+        --     enabled = true,
+        -- },
         terminal = {
             win = {
                 style = "terminal",
@@ -105,33 +167,33 @@ return {
             pane_gap = 4,
             autokeys = "1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ",
 
-            -- Use telescope for all picker operations
-            preset = {
-                pick = function(cmd, opts)
-                    -- Use telescope for all operations
-                    if cmd == 'files' then
-                        if opts and opts.cwd then
-                            require("telescope.builtin").find_files({ cwd = opts.cwd })
-                        else
-                            require("telescope.builtin").find_files()
-                        end
-                    elseif cmd == 'live_grep' then
-                        require("telescope.builtin").live_grep()
-                    elseif cmd == 'oldfiles' then
-                        require("telescope.builtin").oldfiles()
-                    else
-                        -- Fallback to telescope's generic picker for other commands
-                        local telescope_builtin = require("telescope.builtin")
-                        if telescope_builtin[cmd] then
-                            telescope_builtin[cmd](opts)
-                        else
-                            vim.notify("Unknown picker command: " .. cmd, vim.log.levels.WARN)
-                        end
-                    end
-                end,
+            -- -- Use telescope for all picker operations
+            -- preset = {
+            --     pick = function(cmd, opts)
+            --         -- Use telescope for all operations
+            --         if cmd == 'files' then
+            --             if opts and opts.cwd then
+            --                 require("telescope.builtin").find_files({ cwd = opts.cwd })
+            --             else
+            --                 require("telescope.builtin").find_files()
+            --             end
+            --         elseif cmd == 'live_grep' then
+            --             require("telescope.builtin").live_grep()
+            --         elseif cmd == 'oldfiles' then
+            --             require("telescope.builtin").oldfiles()
+            --         else
+            --             -- Fallback to telescope's generic picker for other commands
+            --             local telescope_builtin = require("telescope.builtin")
+            --             if telescope_builtin[cmd] then
+            --                 telescope_builtin[cmd](opts)
+            --             else
+            --                 vim.notify("Unknown picker command: " .. cmd, vim.log.levels.WARN)
+            --             end
+            --         end
+            --     end,
 
-                -- Custom header
-                header = [[
+            -- Custom header
+            header = [[
 ⢦⣤⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣼⣆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣠⡤
 ⠘⣿⣿⣿⣷⣦⣄⣀⠀⢠⠔⠀⢀⡼⠿⠿⢆⠀⠀⠲⣄⠀⣀⣠⣴⣾⣿⣿⣿⠇
 ⠀⠈⠉⠉⠛⠛⠻⠿⢿⣿⠀⢀⣾⣷⡀⢀⣾⣷⡀⠀⣿⡿⠿⠿⠛⠛⠉⠉⠁⠀
@@ -143,26 +205,25 @@ return {
 ⠀⠀⠀⠀⠀⠀⠀⠀⠘⢟⠉⠙⠓⠀⠘⠏⠀⠘⠟⠉⡻⠋⠀⠀⠀⠀⠀⠀⠀⠀
         ]],
 
-                -- Custom keymaps for the dashboard
-                keys = {
-                    { icon = " ", key = "f", desc = "Find File",    action = ":lua Snacks.dashboard.pick('files')" },
-                    { icon = " ", key = "n", desc = "New File",     action = ":ene | startinsert" },
-                    { icon = " ", key = "g", desc = "Find Text",    action = ":lua Snacks.dashboard.pick('live_grep')" },
-                    { icon = " ", key = "r", desc = "Recent Files", action = ":lua Snacks.dashboard.pick('oldfiles')" },
-                    { icon = " ", key = "c", desc = "Config",       action = ":lua Snacks.dashboard.pick('files', {cwd = vim.fn.stdpath('config')})" },
-                    {
-                        icon = " ",
-                        key = "e",
-                        desc = "Load Session",
-                        action = function()
-                            -- Use telescope sessions picker instead of custom implementation
-                            require('telescope').extensions.sessions_picker.sessions_picker()
-                        end
-                    },
-                    { icon = " ", key = "G", desc = "Git Status", action = ":Git" },
-                    { icon = " ", key = "L", desc = "Lazy",       action = ":Lazy" },
-                    { icon = " ", key = "q", desc = "Quit",       action = ":qa" },
+            -- Custom keymaps for the dashboard
+            keys = {
+                { icon = " ", key = "f", desc = "Find File",    action = ":lua Snacks.dashboard.pick('files')" },
+                { icon = " ", key = "n", desc = "New File",     action = ":ene | startinsert" },
+                { icon = " ", key = "g", desc = "Find Text",    action = ":lua Snacks.dashboard.pick('live_grep')" },
+                { icon = " ", key = "r", desc = "Recent Files", action = ":lua Snacks.dashboard.pick('oldfiles')" },
+                { icon = " ", key = "c", desc = "Config",       action = ":lua Snacks.dashboard.pick('files', {cwd = vim.fn.stdpath('config')})" },
+                {
+                    icon = " ",
+                    key = "e",
+                    desc = "Load Session",
+                    action = function()
+                        -- Use Snacks picker for sessions
+                        _G.load_session_with_picker()
+                    end
                 },
+                { icon = " ", key = "G", desc = "Git Status", action = ":Git" },
+                { icon = " ", key = "L", desc = "Lazy",       action = ":Lazy" },
+                { icon = " ", key = "q", desc = "Quit",       action = ":qa" },
             },
 
             -- Dashboard sections
@@ -214,6 +275,34 @@ return {
                 Snacks.dashboard()
             end,
             desc = "Dashboard",
+        },
+        {
+            "<leader>pf",
+            function()
+                Snacks.picker.files()
+            end,
+            desc = "Find Files",
+        },
+        {
+            "<leader>lg",
+            function()
+                Snacks.picker.grep()
+            end,
+            desc = "Live grep",
+        },
+        {
+            "<leader>ps",
+            function()
+                Snacks.picker.grep()
+            end,
+            desc = "Find word or string in project",
+        },
+        {
+            "<leader>pb",
+            function()
+                Snacks.picker.buffers()
+            end,
+            desc = "Find buffers",
         },
         {
             "<leader>bd",
@@ -281,10 +370,8 @@ return {
                 vim.print = _G.dd -- Override print to use snacks for `:=` command
 
                 -- Create some toggle mappings
-                Snacks.toggle.option("spell", { name = "spelling" }):map("<leader>us")
                 Snacks.toggle.option("wrap", { name = "wrap" }):map("<leader>uw")
                 Snacks.toggle.option("relativenumber", { name = "relative number" }):map("<leader>uL")
-                Snacks.toggle.diagnostics():map("<leader>ud")
                 Snacks.toggle.line_number():map("<leader>ul")
                 Snacks.toggle.option("conceallevel", { off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2 })
                     :map("<leader>uc")

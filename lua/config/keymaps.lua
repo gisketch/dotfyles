@@ -2,8 +2,8 @@
 vim.keymap.set("v", "<S-Down>", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "<S-Up>", ":m '<-2<CR>gv=gv")
 
-vim.keymap.set({ "n", "v" }, "<leader>h", "^")
-vim.keymap.set({ "n", "v" }, "<leader>l", "$")
+-- vim.keymap.set({ "n", "v" }, "<leader>h", "^")
+-- vim.keymap.set({ "n", "v" }, "<leader>l", "$")
 -- use left arrow and right arrow keys instead of h and l
 vim.keymap.set({ "n", "v" }, "<leader><Left>", "^")
 vim.keymap.set({ "n", "v" }, "<leader><Right>", "$")

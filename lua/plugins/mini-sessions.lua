@@ -4,7 +4,7 @@ return {
   version = false,
   config = function()
     local sessions = require('mini.sessions')
-    
+
     -- Cross-platform session directory
     local session_dir
     if vim.fn.has('win32') == 1 or vim.fn.has('win64') == 1 then
@@ -14,10 +14,10 @@ return {
       -- macOS and Linux
       session_dir = vim.fn.expand('~/.local/share/nvim-sessions')
     end
-    
+
     -- Create directory if it doesn't exist
     vim.fn.mkdir(session_dir, 'p')
-    
+
     sessions.setup({
       -- Whether to read default session if Neovim opened without file arguments
       autoread = false,
@@ -50,7 +50,7 @@ return {
     _G.get_session_list = function()
       local session_files = vim.fn.glob(session_dir .. '/*', false, true)
       local sessions_list = {}
-      
+
       for _, file in ipairs(session_files) do
         local name = vim.fn.fnamemodify(file, ':t:r')
         local mtime = vim.fn.getftime(file)
@@ -60,24 +60,27 @@ return {
           mtime = mtime,
         })
       end
-      
+
       -- Sort by modification time (newest first)
       table.sort(sessions_list, function(a, b)
         return a.mtime > b.mtime
       end)
-      
+
       -- Limit to 10 sessions
       local limited_sessions = {}
-      for i = 1, math.min(10, #sessions_list) do
+      for i = 1, math.min(25, #sessions_list) do
         table.insert(limited_sessions, sessions_list[i])
       end
-      
+
       return limited_sessions
     end
 
     -- Helper function to save session with input
     _G.save_session_with_input = function()
-      vim.ui.input({ prompt = 'Session name: ' }, function(name)
+      Snacks.input({
+        prompt = 'Session name: ',
+        value = '',
+      }, function(name)
         if name and name ~= '' then
           sessions.write(name)
         end
@@ -91,35 +94,72 @@ return {
         vim.notify('No sessions found', vim.log.levels.INFO)
         return
       end
-      
-      local items = {}
+
+      -- Extract session names for selection
+      local session_names = {}
       for _, session in ipairs(session_list) do
-        table.insert(items, session.name)
+        table.insert(session_names, session.name)
       end
-      
-      vim.ui.select(items, {
-        prompt = 'Delete session: ',
+
+      vim.ui.select(session_names, {
+        prompt = '(CRITICAL) Delete Session: ',
+        format_item = function(item)
+          return '  ' .. item
+        end,
       }, function(choice)
         if choice then
           sessions.delete(choice, { force = true })
         end
       end)
     end
+
+    -- Helper function to load session with picker
+    _G.load_session_with_picker = function()
+      local session_list = _G.get_session_list()
+      if #session_list == 0 then
+        vim.notify('No sessions found', vim.log.levels.INFO)
+        return
+      end
+
+      -- Extract session names for selection
+      local session_names = {}
+      for _, session in ipairs(session_list) do
+        table.insert(session_names, session.name)
+      end
+
+      vim.ui.select(session_names, {
+        prompt = 'Load Session: ',
+        format_item = function(item)
+          return '  ' .. item
+        end,
+      }, function(choice)
+        if choice then
+          sessions.read(choice)
+        end
+      end)
+    end
   end,
   keys = {
     {
-      "<leader>ss",
+      "<leader>us",
       function()
         _G.save_session_with_input()
       end,
       desc = "Save Session",
     },
     {
-      "<leader>sd",
+      "<leader>ud",
       function()
         _G.delete_session_with_picker()
       end,
       desc = "Delete Session",
+    },
+    {
+      "<leader>e",
+      function()
+        _G.load_session_with_picker()
+      end,
+      desc = "Load Session",
     },
   },
 }

@@ -334,9 +334,9 @@ return {
                     -- Diagnostic keymaps
                     vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float,
                         vim.tbl_extend("force", opts, { desc = "Show line diagnostics" }))
-                    vim.keymap.set("n", "[d", vim.diagnostic.goto_prev,
+                    vim.keymap.set("n", "[d", function() vim.diagnostic.jump({ count = -1 }) end,
                         vim.tbl_extend("force", opts, { desc = "Previous diagnostic" }))
-                    vim.keymap.set("n", "]d", vim.diagnostic.goto_next,
+                    vim.keymap.set("n", "]d", function() vim.diagnostic.jump({ count = 1 }) end,
                         vim.tbl_extend("force", opts, { desc = "Next diagnostic" }))
                     vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist,
                         vim.tbl_extend("force", opts, { desc = "Diagnostic loclist" }))

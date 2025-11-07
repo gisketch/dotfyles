@@ -109,7 +109,6 @@ M.themes = {
                     local black3 = "#374145"
                     local grey = "#414b50"
 
-
                     hl.DiagnosticError = { fg = palette.none, bg = palette.none, sp = palette.red }
                     hl.DiagnosticWarn = { fg = palette.none, bg = palette.none, sp = palette.yellow }
                     hl.DiagnosticInfo = { fg = palette.none, bg = palette.none, sp = palette.blue }
@@ -123,7 +122,6 @@ M.themes = {
                     hl.BlinkCmpScrollBarThumb = { bg = darker_black, fg = darker_black }
                     hl.BlinkCmpDocBorder = { bg = darker_black, fg = darker_black }
 
-
                     -- LineNumber
                     hl.CursorLineNr = { fg = palette.green, bold = true }
 
@@ -134,12 +132,25 @@ M.themes = {
                     hl.TelescopeNormal = { bg = black }
                     hl.TelescopeSelection = { bg = black2 }
                     hl.TelescopePromptNormal = { bg = black3 }
-                    hl.TelescopePromptBorder = { bg = black3 }
+                    hl.TelescopePromptBorder = { bg = black3, fg = black3 }
                     hl.TelescopePromptTitle = { bg = palette.blue, fg = black }
                     hl.TelescopePreviewTitle = { bg = palette.green, fg = black }
                     hl.TelescopePreviewNormal = { bg = darker_black }
                     hl.TelescopePreviewBorder = { bg = darker_black, fg = darker_black }
 
+                    -- Snacks borderless
+                    -- hl.TelescopeNormal = { bg = black }
+                    -- hl.TelescopeSelection = { bg = black2 }
+                    -- hl.TelescopePromptNormal = { bg = black3 }
+                    hl.SnacksPickerInput = { bg = black3, }
+                    hl.SnacksPickerPreview = { bg = darker_black, }
+                    hl.SnacksPickerList = { bg = black, }
+                    hl.SnacksPickerInputBorder = { bg = black3, fg = black3 }
+                    hl.SnacksPickerPreviewBorder = { bg = darker_black, fg = darker_black }
+                    hl.SnacksPickerListBorder = { bg = black, fg = black }
+
+                    hl.SnacksPickerInputTitle = { bg = palette.green, fg = black }
+                    hl.SnacksPickerPreviewTitle = { bg = palette.blue, fg = black }
 
                     -- Indent guides
                     hl.SnacksIndent = { fg = black3 }
@@ -149,6 +160,7 @@ M.themes = {
                     hl.SnacksNotifierTitleWarn = { fg = palette.yellow, bg = black3 }
                     hl.SnacksNotifierBorderWarn = { bg = black3, fg = black3 }
                     hl.SnacksNotifierWarn = { bg = black3 }
+                    hl.NoiceCmdlinePopupBorder = { bg = darker_black, fg = darker_black }
 
                     -- Grapple highlight groups
                     hl.GrappleActive = { fg = palette.green, bold = true }

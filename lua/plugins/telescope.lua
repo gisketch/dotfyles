@@ -102,11 +102,6 @@ return {
         require("telescope").load_extension("ui-select")
     end,
     keys = {
-        { "<leader>pf", "<cmd>Telescope find_files<cr>",      desc = "Find files" },
-        { "<leader>lg", "<cmd>Telescope live_grep<cr>",       desc = "Live grep" },
-        { "<leader>pb", "<cmd>Telescope buffers<cr>",         desc = "Find buffers" },
-        -- { "<leader>fh", "<cmd>Telescope help_tags<cr>", desc = "Help tags" },
-        { "<leader>ps", "<cmd>Telescope live_grep<cr>",       desc = "Find word or string in project" },
-        { "<leader>e",  "<cmd>Telescope sessions_picker<cr>", desc = "Load Session" },
+        -- All keymaps migrated to Snacks picker (see snacks.lua, mini-sessions.lua)
     },
 }
