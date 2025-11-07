@@ -25,7 +25,7 @@ return {
       col = nil, -- center
       pane_gap = 4,
       autokeys = "1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ",
-      
+
       -- Custom preset configuration
       preset = {
         -- Custom header
@@ -37,7 +37,7 @@ return {
     ██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║
     ╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝
         ]],
-        
+
         -- Custom keymaps for the dashboard
         keys = {
           { icon = " ", key = "f", desc = "Find File", action = ":Telescope find_files" },
@@ -52,7 +52,7 @@ return {
           { icon = " ", key = "q", desc = "Quit", action = ":qa" },
         },
       },
-      
+
       -- Dashboard sections
       sections = {
         { section = "header" },
@@ -122,27 +122,6 @@ return {
         Snacks.git.blame_line()
       end,
       desc = "Git Blame Line",
-    },
-    {
-      "<leader>gf",
-      function()
-        Snacks.lazygit.log_file()
-      end,
-      desc = "Lazygit Current File History",
-    },
-    {
-      "<leader>gg",
-      function()
-        Snacks.lazygit()
-      end,
-      desc = "Lazygit",
-    },
-    {
-      "<leader>gl",
-      function()
-        Snacks.lazygit.log()
-      end,
-      desc = "Lazygit Log (cwd)",
     },
     {
       "<leader>un",

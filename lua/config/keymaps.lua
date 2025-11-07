@@ -70,7 +70,7 @@ end
 vim.api.nvim_set_keymap("n", "<leader>S", ":lua save_session()<CR>", { noremap = true, silent = true })
 
 -- Terminal mappings
-vim.api.nvim_set_keymap("t", "<Esc>", [[<C-\><C-n>]], { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap("t", "<Esc>", [[<C-\><C-n>]], { noremap = true, silent = true })
 
 -- Split management
 vim.api.nvim_set_keymap("n", "<M-v>", ":vsplit<CR>", { noremap = true, silent = true })
