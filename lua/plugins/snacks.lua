@@ -88,9 +88,6 @@ return {
             win = { style = "input" },
             expand = true,
         },
-        -- select = {
-        --     enabled = true,
-        -- },
         terminal = {
             win = {
                 style = "terminal",
@@ -104,7 +101,8 @@ return {
                 ft = "markdown",
                 wo = {
                     wrap = true,
-                    winblend = 0, -- Remove transparency
+                    winblend = 0,
+                    conceallevel = 2
                 },
                 bo = { filetype = "snacks_notif" },
             },
@@ -166,33 +164,6 @@ return {
             col = nil, -- center
             pane_gap = 4,
             autokeys = "1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ",
-
-            -- -- Use telescope for all picker operations
-            -- preset = {
-            --     pick = function(cmd, opts)
-            --         -- Use telescope for all operations
-            --         if cmd == 'files' then
-            --             if opts and opts.cwd then
-            --                 require("telescope.builtin").find_files({ cwd = opts.cwd })
-            --             else
-            --                 require("telescope.builtin").find_files()
-            --             end
-            --         elseif cmd == 'live_grep' then
-            --             require("telescope.builtin").live_grep()
-            --         elseif cmd == 'oldfiles' then
-            --             require("telescope.builtin").oldfiles()
-            --         else
-            --             -- Fallback to telescope's generic picker for other commands
-            --             local telescope_builtin = require("telescope.builtin")
-            --             if telescope_builtin[cmd] then
-            --                 telescope_builtin[cmd](opts)
-            --             else
-            --                 vim.notify("Unknown picker command: " .. cmd, vim.log.levels.WARN)
-            --             end
-            --         end
-            --     end,
-
-            -- Custom header
             header = [[
 ⢦⣤⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣼⣆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣠⡤
 ⠘⣿⣿⣿⣷⣦⣄⣀⠀⢠⠔⠀⢀⡼⠿⠿⢆⠀⠀⠲⣄⠀⣀⣠⣴⣾⣿⣿⣿⠇
@@ -204,7 +175,6 @@ return {
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⢠⡟⠁⣿⣿⠀⠻⣆⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠘⢟⠉⠙⠓⠀⠘⠏⠀⠘⠟⠉⡻⠋⠀⠀⠀⠀⠀⠀⠀⠀
         ]],
-
             -- Custom keymaps for the dashboard
             keys = {
                 { icon = " ", key = "f", desc = "Find File",    action = ":lua Snacks.dashboard.pick('files')" },
@@ -229,32 +199,32 @@ return {
             -- Dashboard sections
             sections = {
                 { section = "header" },
+                -- -- {
+                -- --     pane = 2,
+                -- --     section = "terminal",
+                -- --     -- cmd = "pokemon-colorscripts --no-title --name mudkip",
+                -- --     cmd = "pokemonshow",
+                -- --     height = 10,
+                -- --     padding = 1,
+                -- -- },
+                -- { section = "keys",  gap = 1, padding = 1 },
                 -- {
                 --     pane = 2,
-                --     section = "terminal",
-                --     -- cmd = "pokemon-colorscripts --no-title --name mudkip",
-                --     cmd = "pokemonshow",
-                --     height = 10,
+                --     icon = " ",
+                --     title = "Recent Files",
+                --     section = "recent_files",
+                --     indent = 2,
                 --     padding = 1,
                 -- },
-                { section = "keys",  gap = 1, padding = 1 },
-                {
-                    pane = 2,
-                    icon = " ",
-                    title = "Recent Files",
-                    section = "recent_files",
-                    indent = 2,
-                    padding = 1,
-                },
-                {
-                    pane = 2,
-                    icon = " ",
-                    title = "Projects",
-                    section = "projects",
-                    indent = 2,
-                    padding = 1,
-                    limit = 10,
-                },
+                -- {
+                --     pane = 2,
+                --     icon = " ",
+                --     title = "Projects",
+                --     section = "projects",
+                --     indent = 2,
+                --     padding = 1,
+                --     limit = 10,
+                -- },
                 { section = "startup" },
             },
         },
@@ -372,13 +342,6 @@ return {
                 -- Create some toggle mappings
                 Snacks.toggle.option("wrap", { name = "wrap" }):map("<leader>uw")
                 Snacks.toggle.option("relativenumber", { name = "relative number" }):map("<leader>uL")
-                Snacks.toggle.line_number():map("<leader>ul")
-                Snacks.toggle.option("conceallevel", { off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2 })
-                    :map("<leader>uc")
-                Snacks.toggle.treesitter():map("<leader>uT")
-                Snacks.toggle.option("background", { off = "light", on = "dark", name = "dark background" }):map(
-                    "<leader>ub")
-                Snacks.toggle.inlay_hints():map("<leader>uh")
             end,
         })
     end,

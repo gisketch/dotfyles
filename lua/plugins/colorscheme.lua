@@ -152,6 +152,12 @@ M.themes = {
                     hl.SnacksPickerInputTitle = { bg = palette.green, fg = black }
                     hl.SnacksPickerPreviewTitle = { bg = palette.blue, fg = black }
 
+                    hl.SnacksInputIcon = { bg = darker_black, fg = palette.green }
+                    hl.SnacksInputTitle = { bg = palette.green, fg = darker_black }
+                    hl.SnacksInputNormal = { bg = darker_black,}
+                    hl.SnacksInputBorder = { bg = darker_black, fg = darker_black }
+                    hl.SnacksInputPrompt = { bg = darker_black, }
+
                     -- Indent guides
                     hl.SnacksIndent = { fg = black3 }
                     hl.SnacksIndentScope = { fg = grey }
