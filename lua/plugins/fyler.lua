@@ -1,0 +1,52 @@
+-- File explorer configuration
+return {
+    "A7Lavinraj/fyler.nvim",
+    branch = "stable",
+    lazy = false,
+    dependencies = { "nvim-mini/mini.icons" },
+    config = function()
+        require("fyler").setup({
+            default_explorer = true,
+            close_on_select = true,
+            delete_to_trash = false,
+            icon_provider = "mini_icons",
+        })
+
+        -- Set darker background for fyler buffer
+        vim.api.nvim_create_autocmd("FileType", {
+            pattern = "fyler",
+            callback = function()
+                vim.api.nvim_set_hl(0, "FylerNormal", { bg = "#1e2326" })
+                vim.opt_local.winhighlight = "Normal:FylerNormal"
+            end,
+        })
+    end,
+    mappings = {
+        ["q"] = "CloseView",
+        ["<CR>"] = "Select",
+        ["<C-t>"] = "SelectTab",
+        ["|"] = "SelectVSplit",
+        ["-"] = "SelectSplit",
+        ["~"] = "GotoParent",
+        ["="] = "GotoCwd",
+        ["."] = "GotoNode",
+        ["#"] = "CollapseAll",
+        ["<S-Right>"] = "CollapseNode",
+    },
+    keys = {
+        {
+            "<leader>pv",
+            function()
+                require("fyler").open({ kind = "split_left_most" })
+            end,
+            desc = "Open file explorer (left split)",
+        },
+        {
+            "<C-p>",
+            function()
+                require("fyler").toggle({ kind = "split_left_most" })
+            end,
+            desc = "Toggle file explorer (left split)",
+        },
+    },
+}

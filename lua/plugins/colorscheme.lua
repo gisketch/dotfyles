@@ -114,6 +114,7 @@ M.themes = {
                     hl.DiagnosticInfo = { fg = palette.none, bg = palette.none, sp = palette.blue }
                     hl.DiagnosticHint = { fg = palette.none, bg = palette.none, sp = palette.green }
                     hl.NormalFloat = { bg = darker_black }
+                    hl.VertSplit = { bg = black, fg = black }
                     hl.FloatTitle = { bg = palette.green, fg = black, bold = true }
                     hl.FloatBorder = { bg = darker_black, fg = darker_black }
                     hl.BlinkCmpMenuBorder = { bg = darker_black, fg = darker_black }
