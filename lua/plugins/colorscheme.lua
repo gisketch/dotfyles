@@ -129,14 +129,16 @@ M.themes = {
                     hl.LeapLabel = { fg = palette.yellow, bold = true }
 
                     -- Telescope borderless configuration
-                    hl.TelescopeNormal = { bg = black }
+                    hl.TelescopeNormal = { bg = darker_black }
                     hl.TelescopeSelection = { bg = black2 }
-                    hl.TelescopePromptNormal = { bg = black3 }
-                    hl.TelescopePromptBorder = { bg = black3, fg = black3 }
+                    hl.TelescopePromptNormal = { bg = darker_black }
+                    hl.TelescopePromptBorder = { bg = darker_black, fg = darker_black }
                     hl.TelescopePromptTitle = { bg = palette.blue, fg = black }
                     hl.TelescopePreviewTitle = { bg = palette.green, fg = black }
                     hl.TelescopePreviewNormal = { bg = darker_black }
                     hl.TelescopePreviewBorder = { bg = darker_black, fg = darker_black }
+
+                    hl.TelescopeBorder = { bg = darker_black, fg = darker_black }
 
                     -- Snacks borderless
                     -- hl.TelescopeNormal = { bg = black }

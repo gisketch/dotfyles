@@ -23,7 +23,7 @@ return {
         },
         picker = {
             enabled = true,
-            ui_select = true,
+            ui_select = false,
             live = true,
             layouts = {
                 select = {
