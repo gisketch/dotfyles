@@ -91,6 +91,7 @@ return {
                     }
                 },
                 lualine_b = {
+                    'filename',
                     'branch',
                     {
                         'diff',
@@ -108,7 +109,7 @@ return {
                     'diagnostics'
                 },
                 lualine_c = { grapple_numbers },
-                lualine_x = { 'filename' },
+                -- lualine_x = { 'filename' },
                 lualine_y = { 'progress' },
                 lualine_z = { 'location' }
             },

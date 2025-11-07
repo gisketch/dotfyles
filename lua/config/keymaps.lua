@@ -1,6 +1,6 @@
 -- Movement and editing
-vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
-vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+vim.keymap.set("v", "<S-Down>", ":m '>+1<CR>gv=gv")
+vim.keymap.set("v", "<S-Up>", ":m '<-2<CR>gv=gv")
 
 vim.keymap.set({ "n", "v" }, "<leader>h", "^")
 vim.keymap.set({ "n", "v" }, "<leader>l", "$")
@@ -53,6 +53,7 @@ end, { desc = "Change theme" })
 vim.api.nvim_set_keymap("", "<C-S-v>", '"+p', { noremap = true, silent = true })
 vim.api.nvim_set_keymap("i", "<C-S-v>", "<C-R>+", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("v", "<C-S-v>", '"+p', { noremap = true, silent = true })
+vim.api.nvim_set_keymap("t", "<C-S-v>", '<C-\\><C-o>"+p', { noremap = true, silent = true })
 
 -- Session management
 local function save_session()

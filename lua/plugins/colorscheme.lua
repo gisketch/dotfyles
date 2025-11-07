@@ -127,6 +127,8 @@ M.themes = {
                     -- LineNumber
                     hl.CursorLineNr = { fg = palette.green, bold = true }
 
+                    -- Leap
+                    hl.LeapLabel = { fg = palette.yellow, bold = true }
 
                     -- Telescope borderless configuration
                     hl.TelescopeNormal = { bg = black }
