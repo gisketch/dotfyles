@@ -74,15 +74,15 @@ return {
                 "telescope",
                 opts = {
                     layout_strategy = "vertical",
-                    -- layout_config = {
-                    --     vertical = {
-                    --         prompt_position = "top",
-                    --         width = { padding = 0 },
-                    --         height = { padding = 0 },
-                    --         preview_cutoff = 10,
-                    --         preview_height = 0.4,
-                    --     },
-                    -- },
+                    layout_config = {
+                        vertical = {
+                            prompt_position = "top",
+                            width = 0.7,
+                            height = 0.6,
+                            preview_cutoff = 10,
+                            preview_height = 0.6,
+                        },
+                    },
                     sorting_strategy = "ascending",
                 }
             },

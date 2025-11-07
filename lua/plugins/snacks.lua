@@ -12,7 +12,6 @@ return {
             enabled = true,
             timeout = 3000,
             padding = true,
-
             style = "fancy"
         },
         quickfile = { enabled = true },
@@ -96,7 +95,7 @@ return {
         -- STYLES
         styles = {
             notification = {
-                border = 'none',
+                border = "bold",
                 zindex = 100,
                 ft = "markdown",
                 wo = {

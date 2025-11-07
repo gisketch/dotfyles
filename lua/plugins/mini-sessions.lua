@@ -104,7 +104,7 @@ return {
       vim.ui.select(session_names, {
         prompt = '(CRITICAL) Delete Session: ',
         format_item = function(item)
-          return '  ' .. item
+          return ' ' .. item
         end,
       }, function(choice)
         if choice then
@@ -130,7 +130,7 @@ return {
       vim.ui.select(session_names, {
         prompt = 'Load Session: ',
         format_item = function(item)
-          return '  ' .. item
+          return ' ' .. item
         end,
       }, function(choice)
         if choice then
