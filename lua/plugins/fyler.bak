@@ -35,13 +35,6 @@ return {
     },
     keys = {
         {
-            "<leader>pv",
-            function()
-                require("fyler").open({ kind = "split_left_most" })
-            end,
-            desc = "Open file explorer (left split)",
-        },
-        {
             "<C-p>",
             function()
                 require("fyler").toggle({ kind = "split_left_most" })

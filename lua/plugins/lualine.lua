@@ -45,6 +45,7 @@ return {
             separator = { left = "", right = "" },
         }
 
+        local triforce = require('triforce.lualine').components()
         require('lualine').setup {
             options = {
                 icons_enabled = true,
@@ -109,9 +110,16 @@ return {
                     'diagnostics'
                 },
                 lualine_c = { grapple_numbers },
-                -- lualine_x = { 'filename' },
-                lualine_y = { 'progress' },
-                lualine_z = { 'location' }
+                lualine_x = {
+                    triforce.achievements,
+                },
+                lualine_y = {
+                    triforce.level,
+                },
+                lualine_z = {
+                    triforce.session_time,
+                    triforce.streak,
+                    'location' }
             },
             inactive_sections = {
                 lualine_a = {},

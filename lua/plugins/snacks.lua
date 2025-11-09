@@ -22,8 +22,8 @@ return {
         },
         picker = {
             enabled = true,
-            ui_select = false,
-            live = true,
+            ui_select = true,
+            -- live = true,
             layouts = {
                 select = {
                     layout = {
@@ -163,6 +163,7 @@ return {
             col = nil, -- center
             pane_gap = 4,
             autokeys = "1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ",
+            preset = {
             header = [[
 ⢦⣤⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣼⣆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣠⡤
 ⠘⣿⣿⣿⣷⣦⣄⣀⠀⢠⠔⠀⢀⡼⠿⠿⢆⠀⠀⠲⣄⠀⣀⣠⣴⣾⣿⣿⣿⠇
@@ -174,27 +175,7 @@ return {
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⢠⡟⠁⣿⣿⠀⠻⣆⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠘⢟⠉⠙⠓⠀⠘⠏⠀⠘⠟⠉⡻⠋⠀⠀⠀⠀⠀⠀⠀⠀
         ]],
-            -- Custom keymaps for the dashboard
-            keys = {
-                { icon = " ", key = "f", desc = "Find File",    action = ":lua Snacks.dashboard.pick('files')" },
-                { icon = " ", key = "n", desc = "New File",     action = ":ene | startinsert" },
-                { icon = " ", key = "g", desc = "Find Text",    action = ":lua Snacks.dashboard.pick('live_grep')" },
-                { icon = " ", key = "r", desc = "Recent Files", action = ":lua Snacks.dashboard.pick('oldfiles')" },
-                { icon = " ", key = "c", desc = "Config",       action = ":lua Snacks.dashboard.pick('files', {cwd = vim.fn.stdpath('config')})" },
-                {
-                    icon = " ",
-                    key = "e",
-                    desc = "Load Session",
-                    action = function()
-                        -- Use Snacks picker for sessions
-                        _G.load_session_with_picker()
-                    end
-                },
-                { icon = " ", key = "G", desc = "Git Status", action = ":Git" },
-                { icon = " ", key = "L", desc = "Lazy",       action = ":Lazy" },
-                { icon = " ", key = "q", desc = "Quit",       action = ":qa" },
             },
-
             -- Dashboard sections
             sections = {
                 { section = "header" },
@@ -294,6 +275,8 @@ return {
             end,
             desc = "Git Blame Line",
         },
+
+        { "<leader>gb", function() Snacks.picker.git_branches() end, desc = "Git Branches" },
         {
             "<leader>nd",
             function()
